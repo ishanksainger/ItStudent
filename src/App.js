@@ -29,6 +29,7 @@ import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import { getUserDetails } from "./services/operations/profileAPI";
 import { useEffect } from "react";
 import Instructor from "./components/core/Dashboard/Instructor";
+import Admin from "./components/core/Dashboard/Admin/Admin";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -103,6 +104,21 @@ function App() {
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
+
+          {/* Route only for Instructor */}
+
+          {user?.accountType === ACCOUNT_TYPE.ADMIN && (
+            <>
+              <Route path="dashboard/admin" element={<Admin/>} />
+              {/* <Route path="/dashboard/add-category" element={< />} />
+              <Route path="/dashboard/all-courses" element={< />} />
+              <Route path="/dashboard/all-users" element={< />} />
+              <Route path="/dashboard/all-instructors" element={< />} /> */}
+            </>
+          )}
+
+          {/* Route only for Instructor */}
+
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
@@ -114,23 +130,6 @@ function App() {
               />
             </>
           )}
-          {/* {
-            user?.accountType === ACCOUNT_TYPE.STUDENT && (
-              <>
-                <Route path="dashboard/cart" element={<Cart />} />
-                <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
-              </>
-            )
-          } */}
-          {/* {
-            user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-              <>
-                <Route path="dashboard/add-course" element={<AddCourse />} />
-                <Route path="dashboard/my-courses" element={<MyCourses />} />
-                <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
-              </>
-            )
-          } */}
 
           {/* Route only for Students */}
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
