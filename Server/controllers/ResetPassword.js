@@ -27,7 +27,7 @@ exports.resetPasswordToken = async (req, res) => {
             }, { new: true }) //newLtrue returns you the updated value after updaing the token andresetpasswordexpires time
 
         //create url
-        const url = `http://localhost:3000/update-password/${token}`
+        const url = `https://itstudent.in/update-password/${token}`
 
         //send mail containing url
         await mailSender(email, "Password Reset Link", `Password Reset Link : ${url}`)
