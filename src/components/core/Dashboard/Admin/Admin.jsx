@@ -11,6 +11,8 @@ import { getAdminData} from "../../../../services/operations/profileAPI";
 import InstructorChart from "../InstructorDashboard/InstructorChart";
 import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
 
+// I am here to change
+
 export default function Admin() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
