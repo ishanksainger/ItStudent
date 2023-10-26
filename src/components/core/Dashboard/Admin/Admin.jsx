@@ -9,6 +9,8 @@ import InstructorChart from "../InstructorDashboard/InstructorChart";
 import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
 import IconBtn from "../../../common/IconBtn";
 
+// Hi i am the change
+
 export default function Admin() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
