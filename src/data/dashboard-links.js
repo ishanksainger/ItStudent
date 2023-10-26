@@ -50,11 +50,7 @@ export const sidebarLinks = [
   },
   {
     id: 8,
-
     name: "Categories",
-
-    name: "Course Categories",
-
     path: "/dashboard/course-category",
     type: ACCOUNT_TYPE.ADMIN,
     icon: "VscMenu",

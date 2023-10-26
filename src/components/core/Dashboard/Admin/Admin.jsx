@@ -6,11 +6,6 @@ import InstructorChart from "../InstructorDashboard/InstructorChart";
 import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
 import IconBtn from "../../../common/IconBtn";
 
-import { Link } from "react-router-dom";
-import { getAdminData} from "../../../../services/operations/profileAPI";
-import InstructorChart from "../InstructorDashboard/InstructorChart";
-import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
-
 // I am here to change
 
 export default function Admin() {
