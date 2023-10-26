@@ -293,10 +293,10 @@ exports.instructorDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" })
   }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 363b646 (Your commit message)
+
+
+
 exports.adminDashboard = async (req, res) => {
   try {
     const courseDetails = await Course.find()
@@ -324,7 +324,7 @@ exports.adminDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" })
   }
 }
-<<<<<<< HEAD
+
 
 // Server-Side Code
 exports.getAllUsers = async (req, res) => {
@@ -351,5 +351,5 @@ exports.getAllUsers = async (req, res) => {
     });
   }
 }
-=======
->>>>>>> 363b646 (Your commit message)
+
+
