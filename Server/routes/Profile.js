@@ -9,6 +9,7 @@ const {
   getEnrolledCourses,
   instructorDashboard,
   adminDashboard,
+  getAllUsers,
 } = require("../controllers/profile")
 
 // ********************************************************************************************************
@@ -18,6 +19,8 @@ const {
 router.delete("/deleteProfile", auth, isStudent, deleteAccount)
 router.put("/updateProfile", auth, updateProfile)
 router.get("/getUserDetails", auth, getAllUserDetails)
+router.get("/getUsers", getAllUsers)
+
 // Get Enrolled Courses
 router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)

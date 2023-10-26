@@ -30,6 +30,9 @@ import { getUserDetails } from "./services/operations/profileAPI";
 import { useEffect } from "react";
 import Instructor from "./components/core/Dashboard/Instructor";
 import Admin from "./components/core/Dashboard/Admin/Admin";
+import AllCourses from "./components/core/Dashboard/Admin/AllCourses";
+import AllStudents from "./components/core/Dashboard/Admin/AllStudents";
+import AllInstructors from "./components/core/Dashboard/Admin/AllInstructors";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -105,15 +108,18 @@ function App() {
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
 
-          {/* Route only for Instructor */}
+          {/* Route only for Admin */}
 
           {user?.accountType === ACCOUNT_TYPE.ADMIN && (
             <>
-              <Route path="dashboard/admin" element={<Admin/>} />
-              {/* <Route path="/dashboard/add-category" element={< />} />
-              <Route path="/dashboard/all-courses" element={< />} />
-              <Route path="/dashboard/all-users" element={< />} />
-              <Route path="/dashboard/all-instructors" element={< />} /> */}
+              <Route path="dashboard/admin" element={<Admin />} />
+              {/* <Route path="/dashboard/add-category" element={< />} /> */}
+              <Route path="/dashboard/all-courses" element={<AllCourses />} />
+              <Route path="/dashboard/all-users" element={<AllStudents />} />
+              <Route
+                path="/dashboard/all-instructors"
+                element={<AllInstructors />}
+              />
             </>
           )}
 

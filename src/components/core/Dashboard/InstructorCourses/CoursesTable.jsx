@@ -93,7 +93,7 @@ const CoursesTable = ({ courses, setCourses }) => {
                             :
                             (
                                 courses?.map((course) => (
-                                    <Tr key={course._id} className="flex flex-col sm:flex-row md:flex-row lg:flex-row gap-x-10 border border-richblack-600 px-6 py-8 responsiveTableCustom">
+                                    <Tr key={course._id} className="flex flex-col sm:flex-row md:flex-row md:justify-evenly lg:flex-row gap-x-10 border border-richblack-600 px-6 py-8 responsiveTableCustom">
                                         <Td className="flex md:flex-col sm:flex-col lg:flex-row  items-center sm:items-start md:items-start lg:items-start gap-y-2 sm:gap-x-4 md:gap-x-4 lg:gap-x-4">
                                             <img
                                                 src={course?.thumbnail}

@@ -1,23 +1,41 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAdminData} from "../../../../services/operations/profileAPI";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  getAdminData,
+  getAllUsersDetails,
+} from "../../../../services/operations/profileAPI";
 import InstructorChart from "../InstructorDashboard/InstructorChart";
 import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
+import IconBtn from "../../../common/IconBtn";
 
 export default function Admin() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
   const [loading, setLoading] = useState(false);
-  const [instructorData, setInstructorData] = useState(null);
+  const [adminData, setAdminData] = useState(null);
   const [courses, setCourses] = useState([]);
-
+  const [students, setStudents] = useState(0);
+  const [instructors, setInstructors] = useState(0);
+  const navigate = useNavigate();
+  
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const instructorApiData = await getAdminData(token);
-      const result = await getAllCourses(token);
-      if (instructorApiData.length) setInstructorData(instructorApiData);
+      const adminApiData = await getAdminData(token);
+      const result = await getAllCourses();
+      const allUsers = await getAllUsersDetails();
+      if (allUsers) {
+        const studentCount = allUsers.filter(
+          (user) => user.accountType === "Student"
+        ).length;
+        const instructorCount = allUsers.filter(
+          (user) => user.accountType === "Instructor"
+        ).length;
+        setStudents(studentCount);
+        setInstructors(instructorCount);
+      }
+      if (adminApiData.length) setAdminData(adminApiData);
       if (result) {
         setCourses(result);
       }
@@ -25,12 +43,12 @@ export default function Admin() {
     })();
   }, []);
 
-  const totalAmount = instructorData?.reduce(
+  const totalAmount = adminData?.reduce(
     (acc, curr) => acc + curr.totalAmountGenerated,
     0
   );
 
-  const totalStudents = instructorData?.reduce(
+  const totalStudents = adminData?.reduce(
     (acc, curr) => acc + curr.totalStudentsEnrolled,
     0
   );
@@ -52,7 +70,7 @@ export default function Admin() {
           <div className="my-4 md:my-8 flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (
-              <InstructorChart courses={instructorData} />
+              <InstructorChart courses={adminData} />
             ) : (
               <div className="flex-1 md:w-1/2 rounded-md bg-richblack-800 p-6">
                 <p className="text-lg md:text-xl font-bold text-richblack-5">
@@ -99,41 +117,41 @@ export default function Admin() {
           <div className="rounded-md bg-richblack-800 p-6">
             {/* Render 3 courses */}
             <div className="flex items-center justify-between">
-              <p className="text-lg md:text-xl font-bold text-richblack-5">
-                Your Courses
+              <p className="text-4xl md:text-xl font-bold text-richblack-5">
+                Database Statistics
               </p>
-              <Link to="/dashboard/my-courses">
-                <p className="text-xs md:text-md font-semibold text-yellow-50">
-                  View All
-                </p>
-              </Link>
             </div>
-            <div className="my-4 flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-6">
-              {courses.slice(0, 3).map((course) => (
-                <div key={course._id} className="w-full md:w-1/3">
-                  <img
-                    src={course.thumbnail}
-                    alt={course.courseName}
-                    className="h-[201px] w-full rounded-md object-cover"
-                  />
-                  <div className="mt-3">
-                    <p className="text-md font-medium text-richblack-50">
-                      {course.courseName}
-                    </p>
-                    <div className="mt-1 flex items-center space-x-2">
-                      <p className="text-md font-medium text-richblack-300">
-                        {course.studentsEnrolled.length} students
-                      </p>
-                      <p className="text-md font-medium text-richblack-300">
-                        |
-                      </p>
-                      <p className="text-md font-medium text-richblack-300">
-                        Rs. {course.price}
-                      </p>
-                    </div>
-                  </div>
+            <div className="my-4 flex flex-col md:flex-row justify-between text-3xl  items-start space-y-6 md:space-y-0 md:space-x-6 text-white">
+            <div className="flex flex-col gap-4 items-center justify-center">
+                <div className="flex justify-center items-center">
+                  <p>Total Students: </p>
+                  <span className="ml-2">{students}</span>
                 </div>
-              ))}
+                <IconBtn
+                  text="See More"
+                  onClick={() => navigate("/dashboard/all-students")}
+                />
+              </div>
+              <div className="flex flex-col gap-4 items-center justify-center">
+                <div className="flex justify-center items-center">
+                  <p>Total Instructors: </p>
+                  <span className="ml-2">{instructors}</span>
+                </div>
+                <IconBtn
+                  text="See More"
+                  onClick={() => navigate("/dashboard/all-instructors")}
+                />
+              </div>
+              <div className="flex flex-col gap-4 items-center justify-center">
+                <div className="flex justify-center items-center">
+                  <p>Total Courses: </p>
+                  <span className="ml-2">{courses.length}</span>
+                </div>
+                <IconBtn
+                  text="See More"
+                  onClick={() => navigate("/dashboard/all-courses")}
+                />
+              </div>
             </div>
           </div>
         </div>

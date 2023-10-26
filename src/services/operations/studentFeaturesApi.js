@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast"
 
-import rzpLogo from "../../assets/Logo/rzp_logo.png"
+import rzpLogo from "../../assets/Logo/rzp_logo_main.png"
 import { resetCart } from "../../slices/cartSlice"
 import { setPaymentLoading } from "../../slices/courseSlice"
 import { apiConnector } from "../apiconnector"
@@ -70,7 +70,7 @@ export async function BuyCourse(
       currency: orderResponse.data.data.currency,
       amount: `${orderResponse.data.data.amount}`,
       order_id: orderResponse.data.data.id,
-      name: "StudyNotion",
+      name: "ITStudent",
       description: "Thank you for Purchasing the Course.",
       image: rzpLogo,
       prefill: {
@@ -86,6 +86,8 @@ export async function BuyCourse(
 
     paymentObject.open()
     paymentObject.on("payment.failed", function (response) {
+      console.log("Payment failed:", response);
+
       toast.error("Oops! Payment Failed.")
       console.log(response.error)
     })

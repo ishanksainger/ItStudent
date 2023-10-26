@@ -321,3 +321,29 @@ exports.adminDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" })
   }
 }
+
+// Server-Side Code
+exports.getAllUsers = async (req, res) => {
+  try {
+    const userDetails = await User.find();
+    if (userDetails.length === 0) {
+      console.log("No users found");
+      return res.status(404).json({
+        success: false,
+        message: "No Users found",
+      });
+    }
+    // Return response
+    res.status(200).json({
+      success: true,
+      message: "User data fetched Successfully",
+      data: userDetails,
+    });
+  } catch (error) {
+    console.error("Error in /getUsers route:", error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
