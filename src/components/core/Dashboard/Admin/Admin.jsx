@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+<<<<<<< HEAD
 import { Link, useNavigate } from "react-router-dom";
 import {
   getAdminData,
@@ -8,11 +9,18 @@ import {
 import InstructorChart from "../InstructorDashboard/InstructorChart";
 import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
 import IconBtn from "../../../common/IconBtn";
+=======
+import { Link } from "react-router-dom";
+import { getAdminData} from "../../../../services/operations/profileAPI";
+import InstructorChart from "../InstructorDashboard/InstructorChart";
+import { getAllCourses } from "../../../../services/operations/courseDetailsAPI";
+>>>>>>> 363b646 (Your commit message)
 
 export default function Admin() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
   const [adminData, setAdminData] = useState(null);
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState(0);
@@ -36,6 +44,17 @@ export default function Admin() {
         setInstructors(instructorCount);
       }
       if (adminApiData.length) setAdminData(adminApiData);
+=======
+  const [instructorData, setInstructorData] = useState(null);
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const instructorApiData = await getAdminData(token);
+      const result = await getAllCourses(token);
+      if (instructorApiData.length) setInstructorData(instructorApiData);
+>>>>>>> 363b646 (Your commit message)
       if (result) {
         setCourses(result);
       }
@@ -43,12 +62,20 @@ export default function Admin() {
     })();
   }, []);
 
+<<<<<<< HEAD
   const totalAmount = adminData?.reduce(
+=======
+  const totalAmount = instructorData?.reduce(
+>>>>>>> 363b646 (Your commit message)
     (acc, curr) => acc + curr.totalAmountGenerated,
     0
   );
 
+<<<<<<< HEAD
   const totalStudents = adminData?.reduce(
+=======
+  const totalStudents = instructorData?.reduce(
+>>>>>>> 363b646 (Your commit message)
     (acc, curr) => acc + curr.totalStudentsEnrolled,
     0
   );
@@ -70,7 +97,11 @@ export default function Admin() {
           <div className="my-4 md:my-8 flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (
+<<<<<<< HEAD
               <InstructorChart courses={adminData} />
+=======
+              <InstructorChart courses={instructorData} />
+>>>>>>> 363b646 (Your commit message)
             ) : (
               <div className="flex-1 md:w-1/2 rounded-md bg-richblack-800 p-6">
                 <p className="text-lg md:text-xl font-bold text-richblack-5">
@@ -117,6 +148,7 @@ export default function Admin() {
           <div className="rounded-md bg-richblack-800 p-6">
             {/* Render 3 courses */}
             <div className="flex items-center justify-between">
+<<<<<<< HEAD
               <p className="text-4xl md:text-xl font-bold text-richblack-5">
                 Database Statistics
               </p>
@@ -152,6 +184,43 @@ export default function Admin() {
                   onClick={() => navigate("/dashboard/all-courses")}
                 />
               </div>
+=======
+              <p className="text-lg md:text-xl font-bold text-richblack-5">
+                Your Courses
+              </p>
+              <Link to="/dashboard/my-courses">
+                <p className="text-xs md:text-md font-semibold text-yellow-50">
+                  View All
+                </p>
+              </Link>
+            </div>
+            <div className="my-4 flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-6">
+              {courses.slice(0, 3).map((course) => (
+                <div key={course._id} className="w-full md:w-1/3">
+                  <img
+                    src={course.thumbnail}
+                    alt={course.courseName}
+                    className="h-[201px] w-full rounded-md object-cover"
+                  />
+                  <div className="mt-3">
+                    <p className="text-md font-medium text-richblack-50">
+                      {course.courseName}
+                    </p>
+                    <div className="mt-1 flex items-center space-x-2">
+                      <p className="text-md font-medium text-richblack-300">
+                        {course.studentsEnrolled.length} students
+                      </p>
+                      <p className="text-md font-medium text-richblack-300">
+                        |
+                      </p>
+                      <p className="text-md font-medium text-richblack-300">
+                        Rs. {course.price}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+>>>>>>> 363b646 (Your commit message)
             </div>
           </div>
         </div>

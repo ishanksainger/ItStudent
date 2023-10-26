@@ -5,7 +5,11 @@ import { apiConnector } from "../apiconnector"
 import { profileEndpoints } from "../apis"
 import { logout } from "./authAPI"
 
+<<<<<<< HEAD
 const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API,  GET_INSTRUCTOR_DATA_API,GET_ADMIN_DATA_API, GET_ALL_USERS_API
+=======
+const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API,  GET_INSTRUCTOR_DATA_API, GET_ADMIN_DATA_API
+>>>>>>> 363b646 (Your commit message)
 } = profileEndpoints
 
 export function getUserDetails(token, navigate) {
@@ -89,6 +93,10 @@ export async function getAdminData(token) {
     const response = await apiConnector("GET", GET_ADMIN_DATA_API, null, {
       Authorization: `Bearer ${token}`,
     })
+<<<<<<< HEAD
+=======
+    console.log("GET_ADMIN_DATA_API API RESPONSE............", response)
+>>>>>>> 363b646 (Your commit message)
     result = response?.data?.courses
   } catch (error) {
     console.log("GET_ADMIN_DATA_API API ERROR............", error)
@@ -98,6 +106,7 @@ export async function getAdminData(token) {
   return result
 }
 
+<<<<<<< HEAD
 export const getAllUsersDetails = async () => {
     const toastId = toast.loading("Loading...")
     let result=[]
@@ -115,3 +124,5 @@ export const getAllUsersDetails = async () => {
     toast.dismiss(toastId)
     return result
 }
+=======
+>>>>>>> 363b646 (Your commit message)

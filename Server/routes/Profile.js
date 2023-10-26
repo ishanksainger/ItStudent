@@ -9,7 +9,10 @@ const {
   getEnrolledCourses,
   instructorDashboard,
   adminDashboard,
+<<<<<<< HEAD
   getAllUsers,
+=======
+>>>>>>> 363b646 (Your commit message)
 } = require("../controllers/profile")
 
 // ********************************************************************************************************
@@ -26,5 +29,8 @@ router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)
 router.get("/instructorDashboard", auth, isInstructor, instructorDashboard)
 router.get("/adminDashboard", auth, isAdmin, adminDashboard)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 363b646 (Your commit message)
 module.exports = router
