@@ -260,20 +260,65 @@ details > summary::-webkit-details-marker {
   }
 }
 
+@media screen and (max-width: 40em) {
+  .responsiveTableCustom {
+    /* Add your custom styles here */
+    border: 1px solid #424854 !important;
+    padding: 0.25em;
+  }
 
-@media screen and (max-width: 40em){
-.responsiveTableCustom {
-  /* Add your custom styles here */
-  border: 1px solid #424854 !important;
-  padding: 0.25em;
+  /* Prevent the default CSS for small screens */
+  .responsiveTableDisable tbody tr {
+    border: none; /* Remove border for small screens */
+    padding: 0; /* Remove padding for small screens */
+  }
+  .tdBefore {
+    color: #afb2bf !important;
+  }
 }
 
-/* Prevent the default CSS for small screens */
-.responsiveTableDisable tbody tr {
-  border: none; /* Remove border for small screens */
-  padding: 0; /* Remove padding for small screens */
+@media screen and (max-width: 1024px) {
+  .responsiveTable td.pivoted {
+    border: none !important;
+    position: relative;
+    padding-left: calc(50% + 10px) !important;
+    text-align: left !important;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+  .responsiveTable thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    border-bottom: 2px solid #333;
+  }
+  .responsiveTable table,
+  .responsiveTable thead,
+  .responsiveTable tbody,
+  .responsiveTable th,
+  .responsiveTable td,
+  .responsiveTable tr {
+    display: block;
+  }
+  .responsiveTable tbody tr {
+    border: 1px solid var(richblack-600);
+    padding: 0.25em;
+  }
+  .responsiveTable td .tdBefore {
+    position: absolute;
+    display: block !important;
+    left: 1rem;
+    width: calc(50% - 20px);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    text-align: left !important;
+    font-weight: 600;
 }
-.tdBefore{
-  color: #AFB2BF !important;
+
+.responsiveTable td .tdBefore {
+    display: none;
+}
+.tdBefore {
+    color: #afb2bf !important;
 }
 }

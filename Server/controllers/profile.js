@@ -145,7 +145,7 @@ exports.getAllUserDetails = async (req, res) => {
     const id = req.user.id
 
     //validation
-    const userDetails = await User.findById(id).populate("additionalDetails").exec()
+    const userDetails = await User.findById(id).populate("additionalDetails").populate("courses").exec()
     if (!userDetails) {
       return res.status(404).json({
         success: false,
@@ -329,7 +329,8 @@ exports.adminDashboard = async (req, res) => {
 // Server-Side Code
 exports.getAllUsers = async (req, res) => {
   try {
-    const userDetails = await User.find();
+    const userDetails = await User.find().populate("additionalDetails").exec();
+
     if (userDetails.length === 0) {
       console.log("No users found");
       return res.status(404).json({

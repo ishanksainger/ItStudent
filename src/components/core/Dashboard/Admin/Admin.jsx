@@ -128,7 +128,7 @@ export default function Admin() {
                 </div>
                 <IconBtn
                   text="See More"
-                  onClick={() => navigate("/dashboard/all-students")}
+                  onClick={() => navigate("/dashboard/all-users")}
                 />
               </div>
               <div className="flex flex-col gap-4 items-center justify-center">

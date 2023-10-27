@@ -77,17 +77,14 @@ const AllCourses = () => {
       <Table className="rounded-xl border border-richblack-600 responsiveTableDisable">
         <Thead>
           <Tr className="flex gap-x-10 rounded-t-md border-b border-b-richblack-600 px-6 py-2">
-            <Th className="flex-1 lg:flex-2 md:flex-1 sm:flex-1 text-left text-sm font-medium uppercase text-richblack-100">
+            <Th className="flex-1 lg:flex-2 md:flex-1 sm:flex-1 text-center text-sm font-medium uppercase text-richblack-100">
               Courses
             </Th>
-            <Th className="lg:flex-1 md:flex-1 sm:flex-1 text-left text-sm font-medium uppercase text-richblack-100">
+            <Th className="lg:flex-1 md:flex-1 sm:flex-1 text-right text-sm font-medium uppercase text-richblack-100">
               Duration
             </Th>
-            <Th className="lg:flex-1 md:flex-1 sm:flex-1 text-left text-sm font-medium uppercase text-richblack-100">
+            <Th className="lg:flex-1 md:flex-1 sm:flex-1 text-right text-sm font-medium uppercase text-richblack-100">
               Price
-            </Th>
-            <Th className="lg:flex-1 md:flex-1 sm:flex-1 text-left text-sm font-medium uppercase text-richblack-100">
-              Actions
             </Th>
           </Tr>
         </Thead>
@@ -140,24 +137,12 @@ const AllCourses = () => {
                     )}
                   </div>
                 </Td>
-                <Td className="text-sm font-medium text-richblack-100">
+                <Td className="text-lg font-medium text-richblack-100">
                   {" "}
                   {calculateTotalDuration(course)}
                 </Td>
-                <Td className="text-sm font-medium text-richblack-100">
+                <Td className="text-lg font-medium text-richblack-100">
                   {course?.price}
-                </Td>
-                <Td className="text-sm font-medium text-richblack-100 ">
-                  <button
-                    disabled={loading}
-                    onClick={() =>
-                      navigate(`/dashboard/edit-course/${course._id}`)
-                    }
-                    title="Edit"
-                    className="px-2 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300"
-                  >
-                    <FiEdit2 size={20} />
-                  </button>
                 </Td>
               </Tr>
             ))

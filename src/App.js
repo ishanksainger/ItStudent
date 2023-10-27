@@ -34,6 +34,8 @@ import Admin from "./components/core/Dashboard/Admin/Admin";
 import AllCourses from "./components/core/Dashboard/Admin/AllCourses";
 import AllStudents from "./components/core/Dashboard/Admin/AllStudents";
 import AllInstructors from "./components/core/Dashboard/Admin/AllInstructors";
+import AllCategories from "./components/core/Dashboard/Admin/AllCategories";
+import AddCategory from "./components/core/Dashboard/Admin/AddCategory";
 
 
 
@@ -117,9 +119,10 @@ function App() {
           {user?.accountType === ACCOUNT_TYPE.ADMIN && (
             <>
               <Route path="dashboard/admin" element={<Admin />} />
-              {/* <Route path="/dashboard/add-category" element={< />} /> */}
+              <Route path="/dashboard/course-category" element={<AllCategories/>} />
               <Route path="/dashboard/all-courses" element={<AllCourses />} />
               <Route path="/dashboard/all-users" element={<AllStudents />} />
+              <Route path="/dashboard/addcategory" element={<AddCategory />} />
               <Route
                 path="/dashboard/all-instructors"
                 element={<AllInstructors />}
