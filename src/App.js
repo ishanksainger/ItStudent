@@ -30,12 +30,10 @@ import { getUserDetails } from "./services/operations/profileAPI";
 import { useEffect } from "react";
 import Instructor from "./components/core/Dashboard/Instructor";
 import Admin from "./components/core/Dashboard/Admin/Admin";
-<<<<<<< HEAD
 import AllCourses from "./components/core/Dashboard/Admin/AllCourses";
 import AllStudents from "./components/core/Dashboard/Admin/AllStudents";
 import AllInstructors from "./components/core/Dashboard/Admin/AllInstructors";
-=======
->>>>>>> 363b646 (Your commit message)
+
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -111,7 +109,7 @@ function App() {
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
 
-<<<<<<< HEAD
+
           {/* Route only for Admin */}
 
           {user?.accountType === ACCOUNT_TYPE.ADMIN && (
@@ -128,21 +126,6 @@ function App() {
           )}
 
           {/* Route only for Instructor */}
-=======
-             {/* Route only for Admin */}
-
-             {user?.accountType === ACCOUNT_TYPE.ADMIN && (
-              <>
-                <Route path="dashboard/admin" element={<Admin/>} />
-                {/* <Route path="/dashboard/add-category" element={< />} />
-                <Route path="/dashboard/all-courses" element={< />} />
-                <Route path="/dashboard/all-users" element={< />} />
-                <Route path="/dashboard/all-instructors" element={< />} /> */}
-              </>
-            )}
-
->>>>>>> 363b646 (Your commit message)
-
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
