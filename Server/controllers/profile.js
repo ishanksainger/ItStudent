@@ -335,9 +335,6 @@ exports.instructorDashboard = async (req, res) => {
   }
 }
 
-
-
-
 exports.adminDashboard = async (req, res) => {
   try {
     const courseDetails = await Course.find()
@@ -365,8 +362,6 @@ exports.adminDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" })
   }
 }
-
-
 // Server-Side Code
 exports.getAllUsers = async (req, res) => {
   try {
@@ -393,5 +388,3 @@ exports.getAllUsers = async (req, res) => {
     });
   }
 }
-
-

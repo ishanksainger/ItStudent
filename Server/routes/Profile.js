@@ -9,11 +9,9 @@ const {
   getEnrolledCourses,
   instructorDashboard,
   adminDashboard,
-
   getAllUsers,
   deleteStudentAccount,
-
-
+  getAllUsers,
 } = require("../controllers/profile")
 
 // ********************************************************************************************************
@@ -31,8 +29,5 @@ router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)
 router.get("/instructorDashboard", auth, isInstructor, instructorDashboard)
 router.get("/adminDashboard", auth, isAdmin, adminDashboard)
-
-
-
 
 module.exports = router

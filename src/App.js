@@ -30,14 +30,11 @@ import { getUserDetails } from "./services/operations/profileAPI";
 import { useEffect } from "react";
 import Instructor from "./components/core/Dashboard/Instructor";
 import Admin from "./components/core/Dashboard/Admin/Admin";
-
 import AllCourses from "./components/core/Dashboard/Admin/AllCourses";
 import AllStudents from "./components/core/Dashboard/Admin/AllStudents";
 import AllInstructors from "./components/core/Dashboard/Admin/AllInstructors";
 import AllCategories from "./components/core/Dashboard/Admin/AllCategories";
 import AddCategory from "./components/core/Dashboard/Admin/AddCategory";
-
-
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -130,8 +127,6 @@ function App() {
             </>
           )}
 
-          {/* Route only for Instructor */}
-
              {/* Route only for Admin */}
 
              {user?.accountType === ACCOUNT_TYPE.ADMIN && (
@@ -143,7 +138,6 @@ function App() {
                 <Route path="/dashboard/all-instructors" element={< />} /> */}
               </>
             )}
-
 
 
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
