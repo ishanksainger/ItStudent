@@ -11,7 +11,6 @@ const {
   adminDashboard,
   getAllUsers,
   deleteStudentAccount,
-  getAllUsers,
 } = require("../controllers/profile")
 
 // ********************************************************************************************************
