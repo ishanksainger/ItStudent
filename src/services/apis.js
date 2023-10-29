@@ -54,6 +54,7 @@ export const ratingsEndpoints = {
 // CATAGORIES API
 export const categories = {
   CATEGORIES_API: BASE_URL + "/course/showAllCategories",
+  CREATE_CATEGORIES_API: BASE_URL + "/course/createCategory",
 }
 
 // CATALOG PAGE DATA
@@ -71,4 +72,5 @@ export const settingsEndpoints = {
   UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
   CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
   DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+  DELETE_STUDENT_API: BASE_URL + "/profile/deleteStudent",
 }

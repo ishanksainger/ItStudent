@@ -11,6 +11,7 @@ const {
   adminDashboard,
 
   getAllUsers,
+  deleteStudentAccount,
 
 
 } = require("../controllers/profile")
@@ -20,6 +21,7 @@ const {
 // ********************************************************************************************************
 // Delet User Account
 router.delete("/deleteProfile", auth, isStudent, deleteAccount)
+router.delete("/deleteStudent", deleteStudentAccount)
 router.put("/updateProfile", auth, updateProfile)
 router.get("/getUserDetails", auth, getAllUserDetails)
 router.get("/getUsers", getAllUsers)

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import ConfirmationModal from "../../../common/ConfirmationModal";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { deleteProfile } from "../../../../services/operations/SettingsAPI";
+import { deleteStudent } from "../../../../services/operations/SettingsAPI";
+import { useDispatch } from "react-redux";
 
 const AllStudents = () => {
   const navigate = useNavigate();
@@ -31,15 +32,24 @@ const AllStudents = () => {
   }, []);
 
   const handleCourseDelete = async (users) => {
+    try{
     setLoading(true);
-    await deleteProfile(users.token, navigate);
+    await deleteStudent(users._id)
     const result = await getAllUsersDetails();
     if (result) {
-      setStudents(result);
+      const filteredStudents = result.filter(
+        (student) => student.accountType === "Student"
+      );
+      setStudents(filteredStudents);
     }
+  }
+  catch (error) {
+    console.log("ERROR MESSAGE - ", error.message)
+  }
     setConfirmationModal(null);
     setLoading(false);
   };
+
 
   const paginate = (students, currentPage, studentsPerPage) => {
     const startIndex = (currentPage - 1) * studentsPerPage;

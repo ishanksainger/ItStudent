@@ -1,4 +1,5 @@
-const Category = require("../models/Category")
+const Category = require("../models/Category");
+const User = require("../models/User");
 
 //create Category ka handler function
 function getRandomInt(max) {
@@ -15,6 +16,7 @@ exports.createCategory = async (req, res) => {
                 message: "All Fields are required"
             })
         }
+       
         //create db entry
         const categoryDetails = await Category.create({
             name: name,
@@ -22,7 +24,8 @@ exports.createCategory = async (req, res) => {
         })
         res.status(200).json({
             success: true,
-            message: "Category created Successfully"
+            message: "Category created Successfully",
+            data:categoryDetails
         })
     } catch (error) {
         res.status(500).json({

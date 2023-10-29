@@ -137,6 +137,47 @@ exports.deleteAccount = async (req, res) => {
   }
 }
 
+exports.deleteStudentAccount = async (req, res) => {
+  try {
+    //get id
+    const id = req.body.userId;
+    console.log(id);
+    //validation
+    const userDetails = await User.findById(id)
+    if (!userDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      })
+    }
+    // Delete Assosiated Profile with the User
+    await Profile.findByIdAndDelete({
+      _id: new mongoose.Types.ObjectId(userDetails.additionalDetails),
+    })
+    for (const courseId of userDetails.courses) {
+      await Course.findByIdAndUpdate(
+        courseId,
+        { $pull: { studentsEnrolled: id } },
+        { new: true }
+      )
+    }
+
+    // Now Delete User
+    await User.findByIdAndDelete({ _id: id })
+
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+    })
+    await CourseProgress.deleteMany({ userId: id })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    })
+  }
+}
+
 //get all the details of user
 
 exports.getAllUserDetails = async (req, res) => {

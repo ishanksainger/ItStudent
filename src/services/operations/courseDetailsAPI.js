@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast"
 // import { updateCompletedLectures } from "../../slices/viewCourseSlice"
 // import { setLoading } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector"
-import { courseEndpoints } from "../apis"
+import { categories, courseEndpoints } from "../apis"
 
 const {
   COURSE_DETAILS_API,
@@ -23,6 +23,8 @@ const {
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
 } = courseEndpoints
+
+const{CREATE_CATEGORIES_API}=categories
 
 export const getAllCourses = async () => {
   const toastId = toast.loading("Loading...")
@@ -386,4 +388,25 @@ export const createRating = async (data, token) => {
   }
   toast.dismiss(toastId)
   return success
+}
+
+export const createCategory = async (data,token) => {
+  let result = null
+  const toastId = toast.loading("Loading...")
+  try {
+    const response = await apiConnector("POST", CREATE_CATEGORIES_API, data, {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    })
+    if (!response?.data?.success) {
+      throw new Error("Could Not Add Course Details")
+    }
+    toast.success("Category Added Successfully")
+    result = response?.data?.data
+  } catch (error) {
+    console.log("CREATE COURSE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
 }
